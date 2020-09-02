@@ -10,18 +10,19 @@ function Greeting(props) {
     return <GuestGreeting />;
 }
 function UserGreeting(props) {
-    return <h1>Bienvenido {props.usuario} </h1>;
+    return true;
+    //return <h4 className="text-dark">Bienvenido {props.usuario} </h4>;
 }
 
 function GuestGreeting(props) {
     return <h1>Iniciar sesión</h1>;
 }
 
-
+//Boton cerrar sesión
 function LogoutButton(props) {
     return (
-        <button onClick={props.onClick}>
-            Logout
+        <button className="btn bg-transparent text-light" onClick={props.onClick}>
+            Cerrar sesión
         </button>
     );
 }
@@ -38,7 +39,7 @@ class CerrarSesion extends React.Component {
 
     }
 
-    //Boton cerrar sesión
+    //Evento boton cerrar sesión
     handleLogoutClick() {
         alert('¡Hasta pronto!')
         const usuarioAutenticado = { 'nombreUsuario': null, 'isLoggedIn': false };
@@ -54,11 +55,19 @@ class CerrarSesion extends React.Component {
         const isLoggedIn = usuarioDatos.isLoggedIn;
         let inicio;
         if (isLoggedIn) {
-            inicio =
-                <div>
-                    <LogoutButton onClick={this.handleLogoutClick} />
-                    <Greeting isLoggedIn={isLoggedIn} usuario={usuario} />
-                </div>
+            inicio = <div>
+                <nav className="navbar navbar-light bg-info">
+
+                    <div id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item ">
+                                <LogoutButton onClick={this.handleLogoutClick} />
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <Greeting isLoggedIn={isLoggedIn} usuario={usuario} />
+            </div>
                 ;
         } else {
             return <Login />

@@ -3,6 +3,7 @@ import VerificarSesion from "./VerificarSesion";
 import CerrarSesion from "./CerrarSesion";
 import { Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
+import './estilos/Login.css';
 
 //Validar usuario y contraseña
 class Autenticacion extends React.Component {
@@ -47,13 +48,13 @@ class Autenticacion extends React.Component {
         const usuarioRegistrado = localStorage.getItem('usuario');
         const contraseñaRegistrado = localStorage.getItem('contraseña');
         if (this.state.usuario === usuarioRegistrado && this.state.contraseña === contraseñaRegistrado) {
-            alert('Bienvenido ' + this.state.usuario)
+            alert('Bienvenido ' + this.state.usuario +' !')
             this.setState({ isLoggedIn: this.state.usuario });
             const usuarioAutenticado = { 'nombreUsuario': this.state.usuario, 'isLoggedIn': true };
             localStorage.setItem('usuarioDatos', JSON.stringify(usuarioAutenticado));
 
         } else {
-            alert('Usuario y/o contraseña invalido ' + this.state.usuario)
+            alert('Usuario y/o contraseña invalido ')
         }
     }
 
@@ -73,16 +74,18 @@ class Autenticacion extends React.Component {
                 ;
         } else {
             button =
-                <div>
-                    <div className="col-sm-6">
-                        <form onSubmit={this.handleSubmit}>
-                            <h1 className="text-center">Iniciar sesión</h1>
+                <div className="col-sm-6 login">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+
+                            <h1 className="text-center">Iniciar Sesión</h1>
                             <label>Usuario</label>
                             <input className="form-control"
                                 name="usuario"
                                 type="text"
                                 value={this.state.usuario}
-                                onChange={this.handleInputChange} />
+                                onChange={this.handleInputChange}
+                                placeholder="Usuario" />
 
                             <br />
                             <label>Contraseña</label>
@@ -91,13 +94,14 @@ class Autenticacion extends React.Component {
                                 name="contraseña"
                                 type="password"
                                 value={this.state.contraseña}
-                                onChange={this.handleInputChange} />
+                                onChange={this.handleInputChange}
+                                placeholder="Contraseña" />
 
                             <br />
                             <input className="btn btn-primary form-control" type="submit" value="Ingresar" />
-                        </form>
-                    </div>
-                </div>
+                        </div>
+                    </form>
+                </div >
                 ;
         }
         return (

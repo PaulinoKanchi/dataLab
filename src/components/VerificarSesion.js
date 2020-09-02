@@ -14,7 +14,7 @@ class VerificarSesion extends React.Component {
     }
 }
 
-//Guardar usuario en localStorage
+//Guardar usuario de prueba en localStorage
 localStorage.setItem('usuario', "Admin");
 localStorage.setItem('contraseña', "Admin20..");
 const usuarioDatos = JSON.parse(localStorage.getItem("usuarioDatos"));
